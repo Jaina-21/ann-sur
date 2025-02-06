@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5th Anniversary Surprise</title>
+    <style>
+        body {
+            background-color: rgb(187, 92, 216);
+            color: rgb(0, 0, 0);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .love-btn {
+            background: linear-gradient(45deg, rgb(106, 117, 223), rgb(69, 65, 107));
+            color: rgb(255, 255, 255);
+            font-size: 24px;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, rgb(119, 127, 199), rgb(56, 54, 80));
+        }
+
+        .love-text {
+            font-size: 22px;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(230, 6, 6, 0.1);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .heart {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgb(231, 33, 19);
+            clip-path: polygon(50% 0%, 100% 40%, 75% 100%, 50% 75%, 25% 100%, 0% 40%);
+            animation: floatUp 2s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HAPPIESST 5TH ANNIVERSARY BABYY!</h1>
+    <button class="love-btn" onclick="showMessage()">Click Me 💖</button>
+    <p class="love-text" id="loveMessage">Press the button to see love messages!</p>
+
+    <script>
+        const loveMessages = [
+            "HAPPIEST 5TH ANNIVERSARY BABYY 💖",
+            "I love you! ❤",
+            "I never want to stop making memories with you 🥰 ",
+            "You are the pulse that throbs in my veins, the antidote that frees me of pain, the rhythm of my heartbeat, without you, my world is incomplete 🫶",
+            "I love you not because of who you are, but because of who I am when I am with you 😘",
+            "Happy Anniversary, my love! ❤ Every moment with you is a beautiful memory in the making. Cheers to many more years together! 🥂✨",
+            "Je t'aime (French) ❤",
+            "I will love you until the stars go out, and the tides no longer turn 💖",
+            "You are my today and all of my tomorrows 🫶",
+            "From the first day to today, my love for you has only grown stronger. 💕 Happy Anniversary, my forever! 🥰💖",
+            "Te amo (Spanish) ❤",
+            "You are my dream, my reality, and my forever 🥰",
+            "Loving you is not a choice it’s my deepest need 🫶",
+            "I will choose you, always, in a hundred lifetimes, in a hundred worlds, in any version of reality ♾",
+            "If I know what love is, it is because of you ♾",
+            "I would rather spend one lifetime with you than face all the ages of this world alone 🥰",
+            "Meeting you was fate, loving you is a choice, and being with you is a dream come true! 💓",
+            "Ich liebe dich (German) ❤",
+            "You are not just my love; you are my heart’s most sacred home 💋",
+            "Even if I had a thousand lifetimes, I would find you in each one and love you the same way 💜",
+            "You are my heart, my life, my one and only thought 😍",
+            "You don’t love someone for their looks, their clothes, or their fancy car, but because they sing a song only you can hear 🧿",
+            "You are the finest, loveliest, tenderest, and most beautiful person I have ever known—and even that is an understatement 💖",
+            "I fell in love the way you fall asleep: slowly, and then all at once.",
+            "My soul and your soul are forever tangled 💖",
+            "You are my sunshine ☀, my moonlight 🌙, and my everything in between. Happy Anniversary, my love! 💑💞",
+            "Ti amo (Italian) ❤",
+            "No words will ever be enough to explain how much I love you 🫶🧿",
+            "Every beat of my heart belongs to you, and with every breath I take, I love you more 🫶",
+            "You are the best thing I never planned🧿",
+            "No matter where life takes us, I will always find my way back to you ♾",
+            "My love for you is a journey—starting at forever and ending at never 🤩",
+            "I would rather spend one second wrapped in your arms than a lifetime without you 💜",
+            "I could search the whole universe and never find a heart as beautiful as yours 🧿",
+            "In your arms, I found my home, in your eyes, I found my soul 💗",
+            "Like the moon belongs to the night, my heart belongs to you, forever glowing in your love’s gentle light 🫶",
+            "Love isn’t something you find. Love is something that finds you 😍",
+            "My love for you has no depth, its boundaries are ever-expanding 🤩",
+            "You are every reason, every hope, and every dream I’ve ever had 😘",
+            "With you, every day feels like a fairytale. 🏰💕 Happy Anniversary to the love of my life! ❤✨",
+            "Saranghae (Korean) ❤",
+            "You are the whisper of the wind, the light in my darkest night, the song my heart sings when silence takes flight 🥰",
+            "You are my sun, my moon, and all my stars 🧿",
+            "Even after all this time, my love for you burns as bright as the first day 🥂♾",
+            "If a hug represented how much I love you, I would hold you in my arms forever 😘",
+            "If my love were a sea, there would be no shore. If my love were a desert, you would see only sand. If my love were a star—late at night, only light. And if my love could grow wings, I’d be soaring in flight 🤩",
+            "A true love story never ends ❤‍🔥",
+            "Our love is ink upon the stars, a story written across time 💜",
+            "You are the ocean, deep and wide; I am the shore, waiting for your tide 😘",
+            "You are not just a part of my life; you are my whole life 🧿",
+            "To the world, you may be one person, but to one person, you are the world ❤‍🩹",
+            "One year down, forever to go! 🥰💍 Thank you for making my life so magical. Happy Anniversary, baby! ❤🎉",
+            "Wo ai ni (Chinese) ❤",
+            "My love for you is not measured in days or years but in heartbeats and breaths—endless, relentless, eternal ♾",
+            "You consume my soul like fire—burning, untamed, unstoppable 💖",
+            "If love had a face, it would wear your smile; if love had a sound, it would echo your name 🥰🫶♾🧿",
+            "You are the poem I never knew how to write and the melody I never knew how to sing 🫶",
+            "Loving you is like breathing—I can’t stop, and I don’t want to 🧿",
+            "I see my future in your eyes, and it is everything I’ve ever dreamed of 💗",
+            "If my love were a sea, there would be no shore. If my love were a desert, you would see only sand. If my love were a star—late at night, only light. And if my love could grow wings, I’d be soaring in flight 🤩",
+            "I could start fires with what I feel for you 🤩 ",
+            "I want to be with you till my last page ♾",
+            "Every time I look at you, I fall in love all over again  ❤‍🩹🧿",
+            "You are not just my love, you are the best part of who I am 🥰",
+            "No matter how dark the night gets, your love is my guiding light 💗",
+            "You are my greatest adventure, my deepest comfort, my forever home ♾🧿😘",
+            "If I had to choose between breathing and loving you, I’d use my last breath to say, 'I love you 😘🧿♾",
+            "My love for you is not measured in days or years but in heartbeats and breaths—endless, relentless, eternal ♾",
+            "You consume my soul like fire—burning, untamed, unstoppable 💖",
+            "If love had a face, it would wear your smile; if love had a sound, it would echo your name 🥰🫶♾🧿",
+            "Love is when the happiness of the other person is more important than your own 💗",
+            "You r not just my boyfriend or prtnr but u r my soulmate and more thn tht u r my bestfriend my happiness my everything tht I prayed for 🫶🧿😘♾🥰",
+            "You're my everything! 💖",
+            "No distance, no time, no other love can break the bond we share🥂",
+            "Love is not about how many days, months, or years you have been together. It’s about how much you love each other every single day🥰",
+            "Through every high and low, I choose you, always. 💑💕 Happy Anniversary, my love! 🥰🥂",
+            "Happy 5th Anniversary! Our love grows stronger every day. 💑",
+            "You are the answer to every prayer I’ve ever whispered, the reason behind every dream I cherish 🫶",
+            "Every love story is beautiful, but ours is my favorite. 💕",
+            "Five years of love, laughter, and happiness. Cheers to forever! 🎉",
+            "You are my today and all of my tomorrows. 🌹",
+            "My love for you is past the mind, beyond my heart, and into my soul 🫶",
+            "With you, every moment is special. Happy 5th Anniversary! 🥂"
+        ];
+
+        function showMessage() {
+            const randomIndex = Math.floor(Math.random() * loveMessages.length);
+            document.getElementById("loveMessage").innerText = loveMessages[randomIndex];
+
+            // Create floating hearts
+            for (let i = 0; i < 5; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = Math.random() * window.innerHeight + "px";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }
+        }
+    </script>
+
+</body>
+</html>
